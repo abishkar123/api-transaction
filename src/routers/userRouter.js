@@ -23,9 +23,6 @@ router.post("/", async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
-
-
-
     if (error.message.includes("E11000 duplicate key error collection")) {
         
     error.code =200;
@@ -35,13 +32,12 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+//login 
+
 router.post("/", async(req, res, next )=>{
   try{
     const user = await updateUser(req.body);
     console.log(user);
-
-
-
   
   if (user?._id) {
     return res.json({
