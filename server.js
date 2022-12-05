@@ -23,9 +23,10 @@ app.use("/api/v1/user", userRouter);
 
 app.use("*", (req, res,next) => {
   const error = {
-    messsage: "403 page not found!",
+    messsage: "404 page not found!",
     code:200,
   };
+  next(error);
 });
 
 // global error handler

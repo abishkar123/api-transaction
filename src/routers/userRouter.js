@@ -1,5 +1,5 @@
 import express from "express";
-import { insertUser, updateUser } from "../models/user/UserModel.js";
+import { findAUser, insertUser} from "../models/user/UserModel.js";
 const router = express.Router();
 
 // create user router
@@ -33,24 +33,38 @@ router.post("/", async (req, res, next) => {
 });
 
 //login 
-
-router.post("/", async(req, res, next )=>{
+router.post("/login", async(req, res, next)=>{
   try{
-    const user = await updateUser(req.body);
-    console.log(user);
+    console.log(req.body);
+
+  // grap the data coming form the lgoing form
+  const user = await findAUser(req.body)
+  console.log(user);
+
+  user?._id 
+  ? res.json({
+    status: 'success',
+    message: " login succesfuly",
+    user:{
+      name: user.name,
+      _id: user._id,
+    },
+  })
+  : res.json({
+    status: 'error',
+    message: " Error! invaild login details",
+  })
+
+    // query database with emai and pin and see if there is any acocunt exiist
+    //-> true, login success 
+    //-> false, invalid login
+    
   
-  if (user?._id) {
-    return res.json({
-      status: "success",
-      message: "you have access",
-    });
-  }
-  res.json({
-    status: "error",
-    message: "Unable to access . Please try again!",
-  });
+  
+
+ 
 } catch (error) {
-  console.log(error.message);
+  next(error);
 
 }
 

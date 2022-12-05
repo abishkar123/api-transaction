@@ -8,7 +8,9 @@ export const insertUser = obj =>{
 
 //login user
 
-export const updateUser = obj =>{
-    return UserSchema(obj).find();
+export const findAUser = obj =>{
+    return UserSchema.findOne(obj);
 }
+
+// obj -> email and pin
 //delete user
