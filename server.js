@@ -3,6 +3,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
 
+
+
 const app = express();
 const PORT = process.env.PORT || 8000;
 
@@ -18,9 +20,15 @@ connectDB();
 
 // routers
 import userRouter from "./src/routers/userRouter.js";
+import transRouter from "./src/routers/transRouter.js";
+import { isAuth } from "./src/middleware/authMiddleware.js";
+
+
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/Transaction", isAuth, transRouter);
 
 
+// catch when router is not found
 app.use("*", (req, res,next) => {
   const error = {
     messsage: "404 page not found!",
@@ -31,6 +39,7 @@ app.use("*", (req, res,next) => {
 
 // global error handler
 app.use((error, req, res, next) => {
+  console.log(error);
   const code = error.code || 500;
   res.status(code).json({
     status: "error",

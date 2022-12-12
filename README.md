@@ -22,7 +22,7 @@ user api will use the following path `{rooturl}/api.v1/ transaction.` this api w
 
 | #   | PATH | METHOD | IS PRIVATE | DESCRIPTION         |
 | --- | ---- | ------ | ---------- | -----------------   |
-| 1.  | `/`  | GET    | No         |  allow user to fetch their own transcation                       |
-| 2.  | `/`  | POST   | No         |  allow user to post new transaction, data should be send as `{}` |
-| 3.  | `/`  | PUT    | No         |         |                                                         
+| 1.  | `/`  | GET    | TRUE       |  allow user to fetch their own transcation                       |
+| 2.  | `/`  | POST   | TRUE       |  allow user to post new transaction, data should be send as `{}` |
+| 3.  | `/`  | PATCH  | No         |         |                                                         
 | 4.  | `/`  | DELETE | No         | allow user to detete signle or mutiple of their own taransaction only. client should send the data as `[id1, id2]`                  |
