@@ -1,13 +1,11 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
  export const connectDB = () =>{
     try{
-        const connStc = "mongodb://localhost:27017/transaction";
-        const conn = mongoose.connect(connStc);
-
+        const conn = mongoose.connect(process.env.MONGO_CLIENT);
+        
         conn
          ? console.log ("Mongo connected ")
-         
          :console.log ("unable to connect ")
     } catch (error){
         console.log(error);
