@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { getAllUserTransactions, insertTrans,deleteManyTrans } from '../models/transaction/transModel.js';
+import { getAllUserTransactions, insertTrans,deleteManyTrans } from '../models/transaction/TransModel.js';
 const router = express();
 
 //read 
